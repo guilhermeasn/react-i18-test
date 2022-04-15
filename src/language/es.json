@@ -1,0 +1,11 @@
+
+{
+
+    "language": "Español",
+
+    "home": {
+        "title": "Prueba de internacionalización con i18",
+        "body": "¡Hola Mundo!"
+    }
+
+}

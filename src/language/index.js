@@ -8,10 +8,12 @@ import {
 
 import ptBrTranslations from './pt-br.json';
 import enUsTranslations from './en-us.json';
+import esTranslations from './es.json';
 
 const languages = {
     'pt-BR': ptBrTranslations,
-    'en-US': enUsTranslations
+    'en-US': enUsTranslations,
+    'es': esTranslations
 }
 
 export const initialize = () => i18next.use(detector).use(initReactI18next).init({
@@ -21,9 +23,13 @@ export const initialize = () => i18next.use(detector).use(initReactI18next).init
     debug: process.env.NODE_ENV !== 'production'
 });
 
-export function Translation({ namespace, message }) {
+export const Translation = ({ namespace, message }) => {
 
     const { t } = useTranslation(namespace);
     return t(message);
 
 }
+
+export const changeLanguage = i18next.changeLanguage;
+export const currentLanguage = () => i18next.language;
+export const availableLanguages = Object.entries(languages).map(([ key, obj ]) => ({ code: key, description: obj.language }));
