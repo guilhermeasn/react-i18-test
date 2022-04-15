@@ -6,19 +6,17 @@ import {
     useTranslation
 } from "react-i18next";
 
-import ptBrTranslations from './pt-br.json';
-import enUsTranslations from './en-us.json';
-import esTranslations from './es.json';
-
-const languages = {
-    'pt-BR': ptBrTranslations,
-    'en-US': enUsTranslations,
-    'es': esTranslations
-}
+const languages =  (() => {
+    let i = {};
+    let r = require.context('./source/', false, /\.json$/);
+    r.keys().map(el => { i[el.replace('./', '').replace('.json', '')] = r(el); });
+    return i;
+})();
 
 export const initialize = () => i18next.use(detector).use(initReactI18next).init({
     resources: languages,
-    fallbackLng: 'pt-BR',
+    lowerCaseLng: true,
+    fallbackLng: 'en',
     defaultNS: 'default',
     debug: process.env.NODE_ENV !== 'production'
 });
