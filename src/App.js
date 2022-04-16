@@ -12,12 +12,11 @@ import {
 
 function App() {
 
-    const [ lang, setLang ] = useState(currentLanguage());
+    const [ lang, setLang ] = useState(null);
 
     useEffect(() => {
-        if(lang !== currentLanguage()) {
-            changeLanguage(lang);
-        }
+        if(!lang) setLang(currentLanguage())
+        else if(lang !== currentLanguage()) changeLanguage(lang);
     }, [lang]);
 
     return <>

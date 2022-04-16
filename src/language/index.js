@@ -9,6 +9,7 @@ import {
 const languages =  (() => {
     let i = {};
     let r = require.context('./source/', false, /\.json$/);
+    // eslint-disable-next-line
     r.keys().map(el => { i[el.replace('./', '').replace('.json', '')] = r(el); });
     return i;
 })();
